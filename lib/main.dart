@@ -10,13 +10,11 @@ void main() {
 //  print(_mathRandom());
   Firestore.instance
       .collection("Users")
-//      .document()    // sem parametro cria-se id dinamico/hash
+//      .document()    // sem parametro cria-se id dinamico/unico
       .document("user_${_mathRandom()}")
-      .setData(
+      .updateData(
     {
-      "name": "Gabr Andreatto Alves",
-      "email": "gabriel.andreatto.1@gmail.com",
-      "idade": 38,
+      "name": "Gabriel Andreatto Alves",
     },
   );
 }
