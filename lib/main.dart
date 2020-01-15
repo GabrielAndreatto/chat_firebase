@@ -1,12 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(
     MyApp(),
   );
+
+  print(_mathRandom());
+
+//  Firestore.instance
+//      .collection("Users")
+//      .document("user_${_mathRandom()}")
+//      .setData({"": ""});
 }
 
-class MyApp extends StatelessWidget {
+_mathRandom() {
+  return Random().nextInt(1000);
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
