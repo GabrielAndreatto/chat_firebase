@@ -7,12 +7,17 @@ void main() {
     MyApp(),
   );
 
-  print(_mathRandom());
-
-//  Firestore.instance
-//      .collection("Users")
-//      .document("user_${_mathRandom()}")
-//      .setData({"": ""});
+//  print(_mathRandom());
+  Firestore.instance
+      .collection("Users")
+      .document("user_${_mathRandom()}")
+      .setData(
+    {
+      "name": "Gabr Andreatto Alves",
+      "email": "gabriel.andreatto.1@gmail.com",
+      "idade": 38,
+    },
+  );
 }
 
 _mathRandom() {
