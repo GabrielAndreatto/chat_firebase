@@ -10,6 +10,7 @@ void main() {
 //  print(_mathRandom());
   Firestore.instance
       .collection("Users")
+//      .document()    // sem parametro cria-se id dinamico/hash
       .document("user_${_mathRandom()}")
       .setData(
     {
