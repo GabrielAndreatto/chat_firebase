@@ -7,11 +7,10 @@ void main() async {
     MyApp(),
   );
 
-  //  print(_mathRandom());
-  QuerySnapshot querySnapshot =
-      await Firestore.instance.collection("messages").getDocuments();
-  querySnapshot.documents.forEach((d) {
-    d.reference.updateData({"status": true});
+  Firestore.instance.collection("messages").snapshots().listen((dado) {
+    dado.documents.forEach((d) {
+      print(d.data);
+    });
   });
 }
 
