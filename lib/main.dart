@@ -7,12 +7,12 @@ void main() async {
     MyApp(),
   );
 
-  DocumentSnapshot snapshot = await Firestore.instance
-      .collection("messages")
-      .document("2Rc3PAtda1f4iUvRUIig")
-      .get();
-
-  print(snapshot.data);
+  //  print(_mathRandom());
+  QuerySnapshot querySnapshot =
+      await Firestore.instance.collection("messages").getDocuments();
+  querySnapshot.documents.forEach((d) {
+    d.reference.updateData({"status": true});
+  });
 }
 
 class MyApp extends StatefulWidget {
