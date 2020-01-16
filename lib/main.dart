@@ -7,10 +7,12 @@ void main() async {
     MyApp(),
   );
 
-  Firestore.instance.collection("messages").snapshots().listen((dado) {
-    dado.documents.forEach((d) {
-      print(d.data);
-    });
+  Firestore.instance
+      .collection("messages")
+      .document("SFaF0nObZuBaMC6e7rmM")
+      .snapshots()
+      .listen((dado) {
+    print(dado.data);
   });
 }
 
