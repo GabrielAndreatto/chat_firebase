@@ -2,25 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-void main() {
+void main() async {
   runApp(
     MyApp(),
   );
 
-//  print(_mathRandom());
-  Firestore.instance
-      .collection("Users")
-//      .document()    // sem parametro cria-se id dinamico/unico
-      .document("user_${_mathRandom()}")
-      .updateData(
-    {
-      "name": "Gabriel Andreatto Alves",
-    },
-  );
-}
-
-_mathRandom() {
-  return Random().nextInt(1000);
+  //  print(_mathRandom());
+  QuerySnapshot querySnapshot =
+      await Firestore.instance.collection("messages").getDocuments();
+  querySnapshot.documents.forEach((d) {
+    print(d.data);
+  });
 }
 
 class MyApp extends StatefulWidget {
@@ -32,6 +24,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -41,11 +34,20 @@ class _MyAppState extends State<MyApp> {
   }
 
   _myHomePage() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Chat Firebase"),
+      ),
+      body: _body(),
+    );
+  }
+
+  _body() {
     return Center(
       child: Text(
         "Chat com Firebase",
         style: TextStyle(
-          fontSize: 25,
+          fontSize: 30,
           color: Colors.green,
         ),
       ),
